@@ -57,7 +57,7 @@ impl<'a> Request<'a> {
         //     }
         //     _ => format!("{}://{}", self.bucket.scheme(), self.bucket.self_host()),
         // };
-        let mut url_str = format!("{}://{}", self.bucket.scheme(), self.bucket.self_host());
+        let mut url_str = format!("{}://{}", self.bucket.scheme(), self.bucket.host());
         // if let Command::ListBucket { .. } = self.command {
         //     url_str.push_str("/");
         //     url_str.push_str(&self.bucket.name());
@@ -197,7 +197,7 @@ impl<'a> Request<'a> {
         //     }
         //     _ => headers.insert(header::HOST, self.bucket.self_host().parse()?),
         // };
-        headers.insert(header::HOST, self.bucket.self_host().parse()?);
+        headers.insert(header::HOST, self.bucket.host().parse()?);
         headers.insert(
             header::CONTENT_LENGTH,
             self.content_length().to_string().parse()?,

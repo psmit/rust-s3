@@ -525,11 +525,7 @@ impl Bucket {
 
     /// Get a reference to the hostname of the S3 API endpoint.
     pub fn host(&self) -> String {
-        self.region.host()
-    }
-
-    pub fn self_host(&self) -> String {
-        format!("{}.s3.amazonaws.com", self.name)
+        format!("{}.{}", self.name, self.region.host())
     }
 
     pub fn scheme(&self) -> String {
